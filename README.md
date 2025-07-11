@@ -9,8 +9,6 @@
 
 ## About The Project
 
-![FlipWhiz Screenshot Placeholder](https://via.placeholder.com/800x400.png?text=Project+Screenshot+Coming+Soon)
-
 **FlipWhiz** is a solo-built, lighthearted digital reading platform in progress — designed to change the way we browse, explore, and engage with eBooks. This is my first-ever project that I’m building completely by myself, and it's currently 20% complete.
 
 ### Motivation
@@ -92,8 +90,6 @@ code FlipWhiz
 > ⚠️ Note: This project is currently in progress. Expect more updates soon!
 
 ---
-
-### \[product-screenshot]: [https://via.placeholder.com/800x400.png?text=Project+Screenshot+Coming+Soon](https://via.placeholder.com/800x400.png?text=Project+Screenshot+Coming+Soon)
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
