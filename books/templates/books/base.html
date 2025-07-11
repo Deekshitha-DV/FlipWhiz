@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}E-Book Library{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'books/css/style.css' %}">
+</head>
+<body>
+    <div class="page-container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- JavaScript Files -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {% block scripts %}{% endblock %}
+    <script type="text/javascript" src="{% static 'books/js/main.js' %}"></script>
+</body>
+</html>

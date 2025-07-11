@@ -1,0 +1,41 @@
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block title %}FlipWhiz Library{% endblock %}
+
+{% block content %}
+<div class="flipbook-container">
+    <div class="flipbook">
+        <!-- The Book Cover -->
+        <div class="page cover">
+            <h1>FlipWhiz</h1>
+            <p>Your Personal E-Book Library</p>
+        </div>
+
+        <!-- The Book Pages -->
+        {% for book in books %}
+        <div class="page">
+            <div class="book-card">
+                <a href="{% url 'book_detail' book.pk %}">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
+                    {% endif %}
+                    <h3>{{ book.title }}</h3>
+                </a>
+                <p>by {{ book.author }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- The Back Cover -->
+        <div class="page back-cover">
+            <h2>The End</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Load the turn.js library -->
+    <script type="text/javascript" src="{% static 'books/js/turn.min.js' %}"></script>
+{% endblock %}

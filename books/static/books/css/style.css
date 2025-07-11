@@ -1,0 +1,157 @@
+/* General Body and Background Styling */
+body {
+    background-color: #5d493a; /* A nice woody table color */
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+/* Container for our flipbook */
+.flipbook-container {
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The flipbook itself */
+.flipbook {
+    width: 800px;
+    height: 600px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.flipbook .page {
+    width: 400px;
+    height: 600px;
+    background-color: #fdfaf7; /* Old paper color */
+    background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 1px solid #e0d8cd;
+}
+
+.flipbook .cover {
+    background-color: #4a1c12; /* Dark leather color */
+    color: #fdfaf7;
+    border: 5px solid #c8a46e;
+    text-align: center;
+}
+.flipbook .cover h1 {
+    font-size: 4em;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.flipbook .back-cover {
+    background-color: #4a1c12;
+    color: #c8a46e;
+}
+
+/* Style for the book cards on each page */
+.book-card {
+    text-align: center;
+}
+.book-card img {
+    max-width: 90%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin-bottom: 1em;
+}
+.book-card h3 {
+    margin: 0.5em 0;
+    color: #333;
+}
+.book-card p {
+    color: #666;
+    font-style: italic;
+}
+.book-card a {
+    text-decoration: none;
+}
+
+
+/* Styling for the Detail Page */
+.detail-page {
+    width: 80vw;
+    max-width: 900px;
+    height: 80vh;
+    background-color: #fdfaf7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    display: flex;
+    padding: 40px;
+    gap: 30px;
+    border-radius: 3px;
+    color: #333;
+}
+.book-info {
+    flex: 1;
+}
+.book-media {
+    flex-basis: 300px;
+    text-align: center;
+}
+.book-media img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* The Creative Bookmark Button */
+.bookmark-button {
+    display: inline-block;
+    position: relative;
+    background: #c0392b; /* A nice red color */
+    color: white;
+    padding: 15px 25px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.bookmark-button::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; /* Controls the length of the V-shape */
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 20px solid #c0392b;
+    border-left: 27px solid transparent; /* Half of the button's width */
+    border-right: 27px solid transparent; /* Half of the button's width */
+    transform: translateX(calc(50% - 27px));
+}
+
+.bookmark-button:hover {
+    background: #e74c3c;
+    transform: translateY(-5px);
+}
+.bookmark-button:hover::after {
+    border-top-color: #e74c3c;
+}
+
+/* Link to go back */
+.back-link-container {
+    position: absolute;
+    bottom: 20px;
+}
+.back-link {
+    color: #fdfaf7;
+    text-decoration: none;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
