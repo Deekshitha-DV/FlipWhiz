@@ -1,4 +1,7 @@
 # In books/views.py
+# At the top of books/views.py
+from django.views.generic.base import RedirectView
+
 from django.shortcuts import render, get_object_or_404
 from .models import Book
 

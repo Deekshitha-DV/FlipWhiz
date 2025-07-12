@@ -17,13 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# At the top of FlipWhiz/urls.py
+from django.views.generic.base import RedirectView
+
 from django.conf import settings
 from django.conf.urls.static import static
 
 
+# New, corrected version
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('books.urls')), 
+    path('library/', include('books.urls')),  # <-- CHANGE THIS LINE
+    path('', RedirectView.as_view(url='library/', permanent=False)), #
 ]
 
 
