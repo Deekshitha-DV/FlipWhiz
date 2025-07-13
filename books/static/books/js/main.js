@@ -1,4 +1,5 @@
-// New and improved main.js
+// Corrected main.js file
+
 $(document).ready(function() {
     var flipbook = $('.flipbook');
 
@@ -8,8 +9,9 @@ $(document).ready(function() {
         height: 600,
         elevation: 50,
         gradients: true,
-        autoCenter: true,
-        // This is the magic part!
+        autoCenter: true,  // <-- Comma is here
+        duration: 1200,    // <-- And a comma here for good practice
+
         when: {
             turning: function(event, page, view) {
                 // Find all links in the flipbook and disable them during the turn

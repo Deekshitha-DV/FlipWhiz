@@ -157,3 +157,59 @@ body {
     background-color: rgba(0,0,0,0.3);
     border-radius: 5px;
 }
+
+
+
+/* ===== Styling for Category Index Tabs ===== */
+.category-tabs {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 100; /* Make sure it's on top */
+}
+
+.tab {
+    padding: 10px 20px;
+    background-color: #a58e7c;
+    color: #fdfaf7;
+    text-decoration: none;
+    font-family: sans-serif;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1) inset;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab:hover, .tab.active {
+    background-color: #fdfaf7;
+    color: #5d493a;
+    transform: translateY(-5px);
+}
+
+
+/* ===== Styling for Category Corner Ribbon ===== */
+.ribbon-wrapper {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.ribbon {
+    font: bold 15px Sans-Serif;
+    color: #FFF;
+    text-align: center;
+    text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+    transform: rotate(45deg);
+    position: relative;
+    padding: 7px 0;
+    left: -5px;
+    top: 45px;
+    width: 200px;
+    background-color: #c0392b; /* Same red as our bookmark button */
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}

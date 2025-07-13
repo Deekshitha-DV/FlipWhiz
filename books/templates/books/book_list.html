@@ -1,38 +1,61 @@
+<!-- Correct and complete books/templates/books/book_list.html -->
+
 {% extends 'books/base.html' %}
 {% load static %}
 
 {% block title %}FlipWhiz Library{% endblock %}
 
 {% block content %}
-<div class="flipbook-container">
-    <div class="flipbook">
-        <!-- The Book Cover -->
-        <div class="page cover">
-            <h1>FlipWhiz</h1>
-            <p>Your Personal E-Book Library</p>
-        </div>
+    <!-- ===== The Category Index Tabs ===== -->
+    <div class="category-tabs">
+        <a href="{% url 'book_list' %}" class="tab {% if not current_category %}active{% endif %}">All</a>
+        {% for cat in categories %}
+            <a href="{% url 'book_list_by_category' cat.slug %}" class="tab {% if current_category.slug == cat.slug %}active{% endif %}">
+                {{ cat.name }}
+            </a>
+        {% endfor %}
+    </div>
 
-        <!-- The Book Pages -->
-        {% for book in books %}
-        <div class="page">
-            <div class="book-card">
-                <a href="{% url 'book_detail' book.pk %}">
-                    {% if book.cover_image %}
-                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
-                    {% endif %}
-                    <h3>{{ book.title }}</h3>
-                </a>
-                <p>by {{ book.author }}</p>
+    <!-- The Flipbook Container -->
+    <div class="flipbook-container">
+        <div class="flipbook">
+            <!-- The Book Cover -->
+            <div class="page cover">
+                <h1>FlipWhiz</h1>
+                <p>Your Personal E-Book Library</p>
+            </div>
+
+            <!-- The Book Pages -->
+            {% for book in books %}
+            <div class="page">
+                <!-- ===== The Category Corner Ribbon ===== -->
+                {% if book.category %}
+                <div class="ribbon-wrapper">
+                    <div class="ribbon">{{ book.category.name }}</div>
+                </div>
+                {% endif %}
+
+                <div class="book-card">
+                    <a href="{% url 'book_detail' book.pk %}">
+                        {% if book.cover_image %}
+                            <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
+                        {% endif %}
+                        <h3>{{ book.title }}</h3>
+                    </a>
+                    <p>by {{ book.author }}</p>
+                </div>
+            </div>
+            {% empty %}
+                <!-- This part is important for debugging! -->
+                <div class="page"><p>No books found in this category.</p></div>
+            {% endfor %}
+
+            <!-- The Back Cover -->
+            <div class="page back-cover">
+                <h2>The End</h2>
             </div>
         </div>
-        {% endfor %}
-
-        <!-- The Back Cover -->
-        <div class="page back-cover">
-            <h2>The End</h2>
-        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block scripts %}

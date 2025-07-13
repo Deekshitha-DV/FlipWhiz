@@ -1,19 +1,30 @@
-# In books/views.py
-# At the top of books/views.py
-from django.views.generic.base import RedirectView
-
+# Your CURRENT books/views.py file (Missing book_detail)
 from django.shortcuts import render, get_object_or_404
-from .models import Book
+from .models import Book, Category
 
-def book_list(request):
-    # Handle search query
+def book_list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    books = Book.objects.all()
+
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        books = books.filter(category=category)
+    
     query = request.GET.get('q')
     if query:
-        books = Book.objects.filter(title__icontains=query)
-    else:
-        books = Book.objects.all()
+        books = books.filter(title__icontains=query)
     
-    return render(request, 'books/book_list.html', {'books': books})
+    context = {
+        'books': books,
+        'categories': categories,
+        'current_category': category
+    }
+    return render(request, 'books/book_list.html', context)
+
+# The book_detail function is missing from here!
+
+# V V V  ADD THIS FUNCTION BACK TO THE FILE  V V V
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
