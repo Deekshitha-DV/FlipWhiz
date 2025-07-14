@@ -1,3 +1,5 @@
+<!-- This is the complete and correct final content for books/templates/books/book_detail.html -->
+
 {% extends 'books/base.html' %}
 
 {% block title %}{{ book.title }}{% endblock %}
@@ -13,9 +15,25 @@
         {% if book.cover_image %}
             <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
         {% endif %}
-        <a href="{{ book.ebook_file.url }}" class="bookmark-button" download>
-            <span class="button-text">Download</span>
-        </a>
+
+        <a href="{{ book.ebook_file.url }}" class="download-button" download>Download E-Book</a>
+        
+        <!-- ===== Add to Favorites Button Logic ===== -->
+        {% if user.is_authenticated %}
+            <form action="{% url 'favorite_book' book.pk %}" method="post" style="margin-top: 1em;">
+                {% csrf_token %}
+                
+                {% if is_favorite %}
+                    <!-- If the book is already a favorite, show a "Remove" button -->
+                    <button type="submit" class="favorite-button remove">Remove from Favorites</button>
+                {% else %}
+                    <!-- Otherwise, show an "Add" button -->
+                    <button type="submit" class="favorite-button add">Add to Favorites</button>
+                {% endif %}
+            </form>
+        {% endif %}
+        <!-- ===== End of Favorites Button Logic ===== -->
+
     </div>
 </div>
 <div class="back-link-container">

@@ -213,3 +213,167 @@ body {
     background-color: #c0392b; /* Same red as our bookmark button */
     box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 }
+
+/* ======================================= */
+/* ===== Styling for Login/Sign-up Forms ===== */
+/* ======================================= */
+
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #fdfaf7; /* Use the same 'old paper' color */
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border: 1px solid #dcd3c9;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: #333;
+    font-family: 'Georgia', serif;
+}
+
+/* Styles for the <p> tags that Django's form.as_p generates */
+.form-container p {
+    margin-bottom: 1.2em;
+    display: flex;
+    flex-direction: column; /* Stack label on top of input */
+    gap: 0.5em; /* Space between label and input */
+}
+
+.form-container label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-container input,
+.form-container ul.errorlist { /* Style error messages too */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box; /* Important for padding */
+    font-size: 1em;
+}
+
+.form-container ul.errorlist {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0 0 1em 0;
+    color: #c0392b; /* Red for errors */
+    background-color: #fbeae5;
+    border: 1px solid #c0392b;
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a1c12; /* Dark leather color */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.form-button:hover {
+    background-color: #6d3325;
+}
+
+/* ======================================= */
+/* ===== Styling for Main Navigation Bar ===== */
+/* ======================================= */
+
+.main-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    z-index: 1000; /* Ensure it's on top of everything */
+    background-color: rgba(0, 0, 0, 0.2); /* A semi-transparent dark background */
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-brand {
+    font-family: 'Georgia', serif;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.nav-link {
+    color: #f0e6e6;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-welcome {
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+/* A special style for the login button to make it stand out */
+.auth-button {
+    background-color: #fdfaf7;
+    color: #4a1c12;
+    font-weight: bold;
+}
+.auth-button:hover {
+    background-color: #e0d8cd;
+}
+
+/* Styling for the Favorite button */
+.favorite-button {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #4a1c12;
+    border-radius: 3px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.favorite-button.add {
+    background-color: transparent;
+    color: #4a1c12;
+}
+.favorite-button.add:hover {
+    background-color: #4a1c12;
+    color: white;
+}
+.favorite-button.remove {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    color: white;
+}
+.favorite-button.remove:hover {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}

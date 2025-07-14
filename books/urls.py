@@ -1,14 +1,19 @@
-# In books/urls.py
+# This is the complete and correct final content for books/urls.py
+
 from django.urls import path
 from . import views
+from .views import AddToFavoritesView # Import the new view
 
 urlpatterns = [
-    # This will be our main library page showing all books
+    # Main library page showing all books
     path('', views.book_list, name='book_list'), 
     
-    # This will handle the filtering, e.g., /library/category/fiction/
+    # URL for filtering by category
     path('category/<slug:category_slug>/', views.book_list, name='book_list_by_category'),
     
-    # This is for the detail page, it remains the same
+    # URL for a single book's detail page
     path('book/<int:pk>/', views.book_detail, name='book_detail'),
+
+    # URL to handle the 'favorite' POST request
+    path('book/<int:pk>/favorite/', AddToFavoritesView.as_view(), name='favorite_book'),
 ]

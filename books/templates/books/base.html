@@ -1,19 +1,44 @@
+<!-- This is the complete and correct final content for books/templates/books/base.html -->
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}E-Book Library{% endblock %}</title>
+    <title>{% block title %}FlipWhiz E-Book Library{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'books/css/style.css' %}">
 </head>
+<!-- In books/templates/books/base.html -->
 <body>
+
+    <!-- ===== New Smart Navigation Bar ===== -->
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="{% url 'book_list' %}" class="nav-brand">FlipWhiz</a>
+            <!-- We will populate category links here later if needed -->
+        </div>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <!-- If the user IS logged in -->
+                <span class="nav-welcome">Welcome, {{ user.username }}!</span>
+                <a href="#" class="nav-link">My Favorites</a> <!-- We'll link this later -->
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+            {% else %}
+                <!-- If the user is NOT logged in -->
+                <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>
+                <a href="{% url 'login' %}" class="nav-link auth-button">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <!-- ===== End of Navigation Bar ===== -->
+
     <div class="page-container">
         {% block content %}{% endblock %}
     </div>
 
     <!-- JavaScript Files -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     {% block scripts %}{% endblock %}
     <script type="text/javascript" src="{% static 'books/js/main.js' %}"></script>
 </body>

@@ -1,4 +1,4 @@
-<!-- Correct and complete books/templates/books/book_list.html -->
+<!-- This is the complete and correct final content for books/templates/books/book_list.html -->
 
 {% extends 'books/base.html' %}
 {% load static %}
@@ -6,54 +6,23 @@
 {% block title %}FlipWhiz Library{% endblock %}
 
 {% block content %}
-    <!-- ===== The Category Index Tabs ===== -->
-    <div class="category-tabs">
-        <a href="{% url 'book_list' %}" class="tab {% if not current_category %}active{% endif %}">All</a>
-        {% for cat in categories %}
-            <a href="{% url 'book_list_by_category' cat.slug %}" class="tab {% if current_category.slug == cat.slug %}active{% endif %}">
-                {{ cat.name }}
-            </a>
-        {% endfor %}
-    </div>
+    <!-- Category Index Tabs -->
+    
+          
+    <!-- This script tag holds the data from our Django view -->
+    <script id="book-data" type="application/json">
+        {{ books_json|safe }}
+    </script>
 
-    <!-- The Flipbook Container -->
+    <!-- The Flipbook Container - JavaScript will build the book inside here -->
     <div class="flipbook-container">
         <div class="flipbook">
-            <!-- The Book Cover -->
-            <div class="page cover">
+            <!-- Start with the static front cover -->
+             <div class="page cover">
                 <h1>FlipWhiz</h1>
                 <p>Your Personal E-Book Library</p>
             </div>
-
-            <!-- The Book Pages -->
-            {% for book in books %}
-            <div class="page">
-                <!-- ===== The Category Corner Ribbon ===== -->
-                {% if book.category %}
-                <div class="ribbon-wrapper">
-                    <div class="ribbon">{{ book.category.name }}</div>
-                </div>
-                {% endif %}
-
-                <div class="book-card">
-                    <a href="{% url 'book_detail' book.pk %}">
-                        {% if book.cover_image %}
-                            <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
-                        {% endif %}
-                        <h3>{{ book.title }}</h3>
-                    </a>
-                    <p>by {{ book.author }}</p>
-                </div>
-            </div>
-            {% empty %}
-                <!-- This part is important for debugging! -->
-                <div class="page"><p>No books found in this category.</p></div>
-            {% endfor %}
-
-            <!-- The Back Cover -->
-            <div class="page back-cover">
-                <h2>The End</h2>
-            </div>
+            <!-- The rest of the pages will be added by main.js -->
         </div>
     </div>
 {% endblock %}

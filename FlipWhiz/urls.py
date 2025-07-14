@@ -27,6 +27,8 @@ from django.conf.urls.static import static
 # New, corrected version
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')), # Built-in auth URLs
+    path('accounts/', include('users.urls')), # Our custom URLs (like sign-up)
     path('library/', include('books.urls')),  # <-- CHANGE THIS LINE
     path('', RedirectView.as_view(url='library/', permanent=False)), #
 ]

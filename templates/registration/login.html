@@ -1,0 +1,17 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Log In</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="form-button">Log In</button>
+    </form>
+    <p style="text-align: center; margin-top: 1em;">
+        Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>
+    </p>
+</div>
+{% endblock %}
