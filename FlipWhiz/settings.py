@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books',
     'users', 
+    'feedback',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,9 @@ LOGIN_REDIRECT_URL = 'book_list'
 
 # Where to redirect users after they log out
 LOGOUT_REDIRECT_URL = 'book_list'
+
+# In FlipWhiz/settings.py
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+ELEVENLABS_API_KEY = "sk_138c2a026feb78f0152e663bae6369c14a007e789c906e8d"

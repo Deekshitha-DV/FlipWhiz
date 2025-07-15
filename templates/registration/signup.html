@@ -1,14 +1,73 @@
+<!-- In templates/registration/signup.html -->
 {% extends 'books/base.html' %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Library Registration{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="form-button">Sign Up</button>
-    </form>
+<div class="ledger-container">
+    <div class="ledger-book">
+        <!-- Left Page: Welcome Message & Instructions -->
+        <div class="ledger-page left-page">
+            <div class="ledger-header">
+                <h2>FlipWhiz Municipal Library</h2>
+                <p class="subheader">New Member Registration</p>
+            </div>
+            <div class="instructions">
+                <p>Welcome, prospective member!</p>
+                <p>Please enter your details on the adjacent page to be formally entered into the library registry.</p>
+                <p>Upon completion, you will be granted full borrowing and favoriting privileges.</p>
+                <p>We look forward to having you with us.</p>
+                <div class="signature">
+                    <p>Sincerely,</p>
+                    <p class="librarian-name">The Head Librarian</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Page: The Actual Form -->
+        <div class="ledger-page right-page">
+            <div class="form-container-ledger">
+                <h2>Registry Entry</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <!-- This handles non-field errors, like 'user already exists' -->
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Manually render each field for custom styling -->
+                    <div class="form-field">
+                        <label for="{{ form.username.id_for_label }}">Registry Name (Username)</label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.email.id_for_label }}">Electronic Mail Address</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.password1.id_for_label }}">Secret Pass-phrase (Password)</label>
+                        {{ form.password1 }}
+                        {{ form.password1.errors }}
+                    </div>
+                    <div class="form-field">
+                        <label for="{{ form.password2.id_for_label }}">Confirm Pass-phrase</label>
+                        {{ form.password2 }}
+                        {{ form.password2.errors }}
+                    </div>
+                    
+                    <div class="stamp-container">
+                        <button type="submit" class="stamp-button">
+                            <span class="stamp-text">REGISTER</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

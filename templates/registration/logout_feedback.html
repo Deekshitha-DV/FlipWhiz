@@ -1,0 +1,32 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Farewell{% endblock %}
+
+{% block content %}
+<div class="ledger-container">
+    <div class="ledger-book" style="width: 600px;"> <!-- Make it a single page book -->
+        <div class="ledger-page right-page">
+            <div class="ledger-header">
+                <h2>Before you go...</h2>
+                <p class="subheader">Your feedback is invaluable to our library.</p>
+            </div>
+            <form method="post" id="feedback-form">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="{{ form.enjoyed.id_for_label }}">What did you enjoy most?</label>
+                    {{ form.enjoyed }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.improvements.id_for_label }}">What could be improved?</label>
+                    {{ form.improvements }}
+                </div>
+                <div class="stamp-container">
+                    <button type="submit" id="final-logout-button" class="stamp-button" disabled>
+                        <span class="stamp-text">LOGOUT</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,12 +3,27 @@
 {% extends 'books/base.html' %}
 {% load static %}
 
-{% block title %}FlipWhiz Library{% endblock %}
+{% block title %}
+    {% if is_favorites_page %}
+        My Favorites
+    {% else %}
+        FlipWhiz Library
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-    <!-- Category Index Tabs -->
-    
-          
+    <!-- Conditionally display category tabs ONLY on the main library/category pages -->
+    {% if not is_favorites_page %}
+        <div class="category-tabs">
+            <a href="{% url 'book_list' %}" class="tab {% if not current_category %}active{% endif %}">All</a>
+            {% for cat in categories %}
+                <a href="{% url 'book_list_by_category' cat.slug %}" class="tab {% if current_category.slug == cat.slug %}active{% endif %}">
+                    {{ cat.name }}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <!-- This script tag holds the data from our Django view -->
     <script id="book-data" type="application/json">
         {{ books_json|safe }}
@@ -17,10 +32,15 @@
     <!-- The Flipbook Container - JavaScript will build the book inside here -->
     <div class="flipbook-container">
         <div class="flipbook">
-            <!-- Start with the static front cover -->
+            <!-- The Book Cover -->
              <div class="page cover">
-                <h1>FlipWhiz</h1>
-                <p>Your Personal E-Book Library</p>
+                {% if is_favorites_page %}
+                    <h1>My Favorites</h1>
+                    <p>A collection of your favorite books</p>
+                {% else %}
+                    <h1>FlipWhiz</h1>
+                    <p>Your Personal E-Book Library</p>
+                {% endif %}
             </div>
             <!-- The rest of the pages will be added by main.js -->
         </div>

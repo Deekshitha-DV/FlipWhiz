@@ -16,6 +16,7 @@
             <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
         {% endif %}
 
+        <!-- Download Button -->
         <a href="{{ book.ebook_file.url }}" class="download-button" download>Download E-Book</a>
         
         <!-- ===== Add to Favorites Button Logic ===== -->
@@ -24,15 +25,23 @@
                 {% csrf_token %}
                 
                 {% if is_favorite %}
-                    <!-- If the book is already a favorite, show a "Remove" button -->
                     <button type="submit" class="favorite-button remove">Remove from Favorites</button>
                 {% else %}
-                    <!-- Otherwise, show an "Add" button -->
                     <button type="submit" class="favorite-button add">Add to Favorites</button>
                 {% endif %}
             </form>
         {% endif %}
         <!-- ===== End of Favorites Button Logic ===== -->
+
+
+        <!-- ===== Listen to Book Feature ===== -->
+        {% if user.is_authenticated %}
+            <div class="listen-container" style="margin-top: 1em;">
+                <audio id="audio-player" controls style="width: 100%; display: none;"></audio>
+                <button id="listen-button" class="favorite-button add">Listen to this Book</button>
+            </div>
+        {% endif %}
+        <!-- ===== End of Listen to Book Feature ===== -->
 
     </div>
 </div>

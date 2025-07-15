@@ -9,21 +9,19 @@
     <title>{% block title %}FlipWhiz E-Book Library{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'books/css/style.css' %}">
 </head>
-<!-- In books/templates/books/base.html -->
 <body>
 
-    <!-- ===== New Smart Navigation Bar ===== -->
+    <!-- ===== Smart Navigation Bar ===== -->
     <nav class="main-nav">
         <div class="nav-left">
             <a href="{% url 'book_list' %}" class="nav-brand">FlipWhiz</a>
-            <!-- We will populate category links here later if needed -->
         </div>
         <div class="nav-right">
             {% if user.is_authenticated %}
                 <!-- If the user IS logged in -->
                 <span class="nav-welcome">Welcome, {{ user.username }}!</span>
-                <a href="#" class="nav-link">My Favorites</a> <!-- We'll link this later -->
-                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                <a href="{% url 'favorite_list' %}" class="nav-link">My Favorites</a>
+                <a href="{% url 'custom_logout' %}" class="nav-link">Logout</a>
             {% else %}
                 <!-- If the user is NOT logged in -->
                 <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>

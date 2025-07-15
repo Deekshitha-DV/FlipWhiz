@@ -377,3 +377,163 @@ body {
     background-color: #e74c3c;
     border-color: #e74c3c;
 }
+/* ======================================= */
+/* === Styling for Library Ledger Sign-Up === */
+/* ======================================= */
+
+/* The main container to center the ledger */
+.ledger-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 100px; /* Space below the main nav bar */
+}
+
+/* The open book effect */
+.ledger-book {
+    display: flex;
+    width: 1000px; /* Width of the open book */
+    height: 700px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Styling for each page of the ledger */
+.ledger-page {
+    width: 50%;
+    height: 100%;
+    background-color: #fdfaf7;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace; /* A typewriter/official font */
+}
+
+.left-page {
+    border-right: 2px solid #dcd3c9;
+    color: #444;
+}
+
+.right-page {
+    border-left: 1px solid #e9e2d9;
+}
+
+.ledger-header {
+    text-align: center;
+    border-bottom: 3px double #999;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.ledger-header h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2em;
+    margin: 0;
+}
+
+.ledger-header .subheader {
+    font-size: 1.2em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.instructions p {
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+}
+
+.signature {
+    margin-top: 50px;
+}
+
+.librarian-name {
+    font-family: 'Brush Script MT', 'cursive'; /* A fancy signature font */
+    font-size: 2em;
+    color: #003366; /* A nice ink blue */
+}
+
+/* Styling for the form on the right page */
+.form-container-ledger {
+    text-align: center;
+}
+
+.form-field {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.form-field label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+/* This is the key to the "fill in the blank" look */
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"] {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #bba;
+    width: 100%;
+    padding: 8px 5px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    outline: none; /* Removes the blue glow on click */
+    transition: border-color 0.2s;
+}
+.form-field input:focus {
+    border-bottom-color: #003366; /* Ink blue when typing */
+}
+
+.form-field .errorlist {
+    list-style-type: none;
+    color: #c0392b;
+    padding: 0;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.form-errors {
+    color: #c0392b;
+    background: #fbeae5;
+    border: 1px solid #c0392b;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* The registration stamp button */
+.stamp-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end; /* Puts the stamp in the bottom right */
+}
+
+.stamp-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Makes it a circle */
+    border: 5px double #c0392b; /* A classic red stamp border */
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    transform: rotate(-15deg); /* A jaunty angle, like a real stamp */
+    transition: all 0.1s ease-in;
+}
+.stamp-button:hover {
+    transform: rotate(-12deg) scale(1.05);
+}
+.stamp-button:active {
+    transform: rotate(-15deg) scale(0.95);
+}
+
+.stamp-text {
+    font-family: 'Impact', sans-serif;
+    font-size: 1.8em;
+    color: #c0392b;
+    border: 2px solid #c0392b;
+    padding: 10px;
+    display: inline-block;
+}
