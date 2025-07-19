@@ -1,135 +1,121 @@
-# FlipWhiz
+#  FlipWhiz: An Interactive E-Book Library 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Deekshitha%20D%20V-blue)](https://www.linkedin.com/in/deekshitha-d-v)
+FlipWhiz is a full-stack web application that reimagines the e-book reading experience. Built with Python and Django, it transforms a standard book library into an immersive, animated virtual flipbook. The platform is designed to be a personalized and engaging space for readers, featuring user accounts, custom bookshelves, and an innovative AI-powered text-to-speech feature.
 
-> 📖 FlipWhiz is a creative eBook platform designed with animated flip-page effects, aiming to deliver a fun and interactive reading experience.
-
----
-
-## About The Project
-
-FlipWhiz is my **first solo project**, and it’s currently **40% completed**. I took up this challenge to build a dynamic and visually appealing eBook reading platform using just **HTML, CSS, and JavaScript** so far. The idea is to provide users with a modern, book-like feel through flipping animations and a clean, smooth interface.
-
-### Motivation
-
-I love reading and visual storytelling. I wanted to create something **useful, beautiful, and fun** that blends the old-school feeling of flipping pages with today’s digital interface. This project is not only a practical learning journey for me but also a creative outlet.
-
-### What I Learned
-
-* Setting up and organizing a project structure
-* Designing interactive elements with CSS & JavaScript
-* Working with responsive layouts
-* Handling local development with GitHub and VS Code
-
-### What Makes FlipWhiz Stand Out
-
-* Unique flip-style animations
-* Custom UI elements
-* Built from scratch without templates
-* A personal project with passion, design, and self-learning behind every feature
-
----
 
 ## Key Features
 
-* Flipbook-style page animations
-* Clean and responsive UI
-* Book categories and titles (in progress)
-* Search and filter system (coming soon)
-* Light/Dark mode (planned)
-* Feedback and user rating (future enhancement)
+*   **Interactive Flipbook UI:** Browse the library through a beautifully animated, skeuomorphic book interface powered by `turn.js`.
+*   **Complete User Authentication:** Secure user registration, login, and a custom logout flow that includes a feedback form.
+*   **Personalized Profile Page:** A "Reading Journal" style profile page for each user to track their literary journey.
+*   **Custom Bookshelves:** Users can organize books onto three distinct shelves:
+    *   **Favorites:** A collection of all-time favorite books.
+    *   **Reading List:** A "read next" list for future adventures.
+    *   **Completed:** A satisfying, struck-through list of finished books.
+*   **AI-Powered Narration:** Listen to any book with a realistic, AI-generated voice using the ElevenLabs Text-to-Speech API.
+*   **Dynamic Category Filtering:** Easily filter the library view by book categories.
+*   **Full Admin Control:** A powerful, built-in Django admin panel for easy management of books, categories, users, and feedback.
 
----
+## Tech Stack
 
-## Built With
+*   **Backend:** Python, Django
+*   **Frontend:** HTML5, CSS3, JavaScript
+*   **Database:** SQLite3 (for development)
+*   **Core Python Libraries:**
+    *   `Pillow` for image processing.
+    *   `PyPDF2` for extracting text from PDF files.
+    *   `elevenlabs` for Text-to-Speech integration.
+*   **Core JavaScript Libraries:**
+    *   `jQuery` (v1.9.1 for compatibility)
+    *   `turn.js` for the flipbook animation.
 
-Currently using:
+## Setup and Installation
 
-* **HTML5**
-* **CSS3**
-* **Vanilla JavaScript**
+Follow these steps to get a local copy of FlipWhiz up and running.
 
-Planned tools as project expands:
+### Prerequisites
 
-* React.js
-* Node.js
-* MongoDB 
-* Anime.js for animations
+*   Python 3.10+
+*   Git
 
----
+### Installation Steps
 
-## Getting Started
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Deekshitha-DV/FlipWhiz.git
+    ```
 
-To get a local copy up and running:
+2.  **Navigate to the project directory:**
+    ```bash
+    cd FlipWhiz
+    ```
 
-### ✅ Prerequisites
+3.  **Create and activate a virtual environment:**
 
-You'll need the following:
+    *   **Windows (PowerShell):**
+        ```powershell
+        # Create the environment (you only need to do this once)
+        python -m venv venv
 
-* Git
-* VS Code or any code editor
-* Live Server extension for local preview
+        # Activate the environment (do this every time you work on the project)
+        .\venv\Scripts\Activate.ps1
+        # If you get an error, you may need to set the execution policy for the session:
+        # Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+        ```
 
-### Installation
+    *   **macOS / Linux:**
+        ```bash
+        # Create the environment
+        python3 -m venv venv
 
-```bash
-# Clone the repo
-git clone https://github.com/Deekshitha-DV/FlipWhiz.git
+        # Activate the environment
+        source venv/bin/activate
+        ```
 
-# Navigate to project directory
-cd FlipWhiz
+4.  **Install the required dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-# Open in your code editor
-code .
+5.  **Set up the database:**
+    ```bash
+    python manage.py migrate
+    ```
 
-# Run using Live Server
-```
+6.  **Create a superuser account** to access the admin panel:
+    ```bash
+    python manage.py createsuperuser
+    ```
+    (Follow the prompts to create your username and password).
 
----
+7.  **Add your API Key:**
+    *   The Text-to-Speech feature requires an API key from [ElevenLabs](https://elevenlabs.io/).
+    *   Sign up for a free account and get your key.
+    *   Open the `FlipWhiz/settings.py` file and add your key at the bottom:
+        ```python
+        ELEVENLABS_API_KEY = "your_secret_api_key_here"
+        ```
+    *   *Note: For a production application, this key should be stored securely as an environment variable, not in the code.*
+
+8.  **Run the development server:**
+    ```bash
+    python manage.py runserver
+    ```
+    The application will be available at `http://127.0.0.1:8000/`.
 
 ## Usage
 
-Once launched:
+*   **Main Library:** Navigate to `http://127.0.0.1:8000/` to be redirected to the main library.
+*   **Admin Panel:** Navigate to `http://127.0.0.1:8000/admin/` and log in with your superuser account to add book categories and upload new e-books.
+*   **Create an Account:** Use the "Sign Up" button to create a regular user account and test the personalization features.
 
-* Navigate through the homepage to view available book tiles
-* Click on a book to view the flip interface (in development)
-* Future versions will support filters, categories, and dynamic book loading
+## Future Enhancements
 
----
+*   Support for `.epub` file parsing for the TTS feature.
+*   Allowing users to choose from different AI voices.
+*   A user rating and review system for books.
+*   Full-text search within the e-book content.
 
-## Project Status
+## License
 
-* [x] Initial layout with HTML/CSS
-* [x] Header and book container sections
-* [x] Basic button designs and navigation
-* [ ] Flip animation logic with JS
-* [ ] Add dynamic book rendering
-* [ ] Responsive design for mobile
-* [ ] Add interactive filters and search
-* [ ] Backend integration for storing book data
-
----
-
-## Future Plans
-
-* Book reading progress tracker
-* Bookmark favorite books
-* User login/signup
-* Upload custom PDFs
-* Theme customization and profile dashboard
-
----
-
-## 🙋‍♀️ Author
-
-**Deekshitha D V**
-Aspiring software developer, design enthusiast, and lifelong learner.
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Deekshitha-blue?style=flat-square\&logo=linkedin)](https://www.linkedin.com/in/deekshitha-d-v)
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-See the [LICENSE](https://github.com/Deekshitha-DV/FlipWhiz/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
