@@ -1,4 +1,4 @@
-<!-- This is the complete and correct final content for books/templates/books/book_detail.html -->
+<!-- This is the complete, correct, and final content for books/templates/books/book_detail.html -->
 
 {% extends 'books/base.html' %}
 
@@ -16,36 +16,53 @@
             <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover">
         {% endif %}
 
-        <!-- Download Button -->
         <a href="{{ book.ebook_file.url }}" class="download-button" download>Download E-Book</a>
         
-        <!-- ===== Add to Favorites Button Logic ===== -->
         {% if user.is_authenticated %}
-            <form action="{% url 'favorite_book' book.pk %}" method="post" style="margin-top: 1em;">
-                {% csrf_token %}
+            <div class="book-actions">
+                <!-- Action 1: Reading List Button -->
+                <form action="{% url 'set_book_status' book.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="status" value="READ_NEXT">
+                    {% if current_status == 'READ_NEXT' %}
+                        <button type="submit" class="action-button active"><i class="fas fa-list-ul"></i> On My Reading List</button>
+                    {% else %}
+                        <button type="submit" class="action-button"><i class="fas fa-list-ul"></i> Add to Reading List</button>
+                    {% endif %}
+                </form>
+
+                <!-- Action 2: Favorites Button -->
+                <form action="{% url 'set_book_status' book.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="status" value="FAVORITE">
+                    {% if current_status == 'FAVORITE' %}
+                        <button type="submit" class="action-button active"><i class="fas fa-star"></i> In My Favorites</button>
+                    {% else %}
+                        <button type="submit" class="action-button"><i class="far fa-star"></i> Add to Favorites</button>
+                    {% endif %}
+                </form>
                 
-                {% if is_favorite %}
-                    <button type="submit" class="favorite-button remove">Remove from Favorites</button>
-                {% else %}
-                    <button type="submit" class="favorite-button add">Add to Favorites</button>
-                {% endif %}
-            </form>
-        {% endif %}
-        <!-- ===== End of Favorites Button Logic ===== -->
+                <!-- Action 3: Completed Button -->
+                <form action="{% url 'set_book_status' book.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="status" value="COMPLETED">
+                    {% if current_status == 'COMPLETED' %}
+                         <button type="submit" class="action-button active"><i class="fas fa-check-circle"></i> Mark as Unread</button>
+                    {% else %}
+                        <button type="submit" class="action-button"><i class="far fa-check-circle"></i> Mark as Completed</button>
+                    {% endif %}
+                </form>
+            </div>
 
-
-        <!-- ===== Listen to Book Feature ===== -->
-        {% if user.is_authenticated %}
+            <!-- Listen to Book Feature -->
             <div class="listen-container" style="margin-top: 1em;">
                 <audio id="audio-player" controls style="width: 100%; display: none;"></audio>
                 <button id="listen-button" class="favorite-button add">Listen to this Book</button>
             </div>
         {% endif %}
-        <!-- ===== End of Listen to Book Feature ===== -->
-
     </div>
 </div>
-<div class="back-link-container">
-    <a href="{% url 'book_list' %}" class="back-link">← Back to Library</a>
-</div>
+
+<!-- The old back-link-container div has been REMOVED from here -->
+
 {% endblock %}

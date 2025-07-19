@@ -1,0 +1,56 @@
+<!-- This is the complete, correct, and final content for users/templates/users/profile.html -->
+
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block title %}{{ user.username }}'s Journal{% endblock %}
+
+{% block content %}
+<div class="journal-container">
+    <div class="journal-page">
+        <div class="journal-header">
+            <h1>{{ user.username }}'s Reading Journal</h1>
+            <p class="journal-date">Entry Date: {% now "F j, Y" %}</p>
+        </div>
+
+        <!-- Reading List Section -->
+        <section class="journal-section">
+            <h2>To Be Read Next...</h2>
+            <ul class="journal-list">
+                {% for book in reading_list %}
+                    <li>{{ book.title }} - <em>by {{ book.author }}</em></li>
+                {% empty %}
+                    <li class="empty-entry">Nothing on the reading list for now. Add books from their detail page!</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Favorites Section -->
+        <section class="journal-section">
+            <h2>All-Time Favorites</h2>
+            <ul class="journal-list favorites-list">
+                {% for book in favorites %}
+                    <li>{{ book.title }} - <em>by {{ book.author }}</em></li>
+                {% empty %}
+                    <li class="empty-entry">No favorites marked yet.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Completed Books Section with Strikethrough -->
+        <section class="journal-section">
+            <h2>Completed Adventures</h2>
+            <ul class="journal-list completed-list">
+                {% for book in completed_books %}
+                    <li class="completed-item">
+                        <span class="strikethrough">{{ book.title }} - <em>by {{ book.author }}</em></span>
+                        <span class="completed-check">✓</span>
+                    </li>
+                {% empty %}
+                    <li class="empty-entry">You haven't finished any books yet. Keep reading!</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+</div>
+{% endblock %}

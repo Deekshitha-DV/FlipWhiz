@@ -1,38 +1,96 @@
-/* General Body and Background Styling */
+/* ======================================= */
+/* ===== General Body and Background ===== */
+/* ======================================= */
 body {
-    background-color: #5d493a; /* A nice woody table color */
+    background-color: #5d493a;
     background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
     font-family: 'Georgia', serif;
-    overflow: hidden;
+    margin: 0;
 }
 
-/* Container for our flipbook */
+.page-container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* ======================================= */
+/* ===== Main Navigation Bar ===== */
+/* ======================================= */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav-brand {
+    font-family: 'Georgia', serif;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+.nav-link {
+    color: #f0e6e6;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.nav-welcome {
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.auth-button {
+    background-color: #fdfaf7;
+    color: #4a1c12;
+    font-weight: bold;
+}
+.auth-button:hover {
+    background-color: #e0d8cd;
+}
+
+/* ======================================= */
+/* ===== Flipbook and Library Page ===== */
+/* ======================================= */
 .flipbook-container {
-    width: 90vw;
-    height: 90vh;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-/* The flipbook itself */
 .flipbook {
     width: 800px;
     height: 600px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-     overflow: hidden; 
-    position: relative; 
+    overflow: hidden;
+    position: relative;
 }
-
 .flipbook .page {
     width: 400px;
     height: 600px;
-    background-color: #fdfaf7; /* Old paper color */
+    background-color: #fdfaf7;
     background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
     display: flex;
     justify-content: center;
@@ -42,9 +100,8 @@ body {
     box-sizing: border-box;
     border-left: 1px solid #e0d8cd;
 }
-
 .flipbook .cover {
-    background-color: #4a1c12; /* Dark leather color */
+    background-color: #4a1c12;
     color: #fdfaf7;
     border: 5px solid #c8a46e;
     text-align: center;
@@ -58,8 +115,6 @@ body {
     background-color: #4a1c12;
     color: #c8a46e;
 }
-
-/* Style for the book cards on each page */
 .book-card {
     text-align: center;
 }
@@ -81,96 +136,15 @@ body {
 .book-card a {
     text-decoration: none;
 }
-
-
-/* Styling for the Detail Page */
-.detail-page {
-    width: 80vw;
-    max-width: 900px;
-    height: 80vh;
-    background-color: #fdfaf7;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    display: flex;
-    padding: 40px;
-    gap: 30px;
-    border-radius: 3px;
-    color: #333;
-}
-.book-info {
-    flex: 1;
-}
-.book-media {
-    flex-basis: 300px;
-    text-align: center;
-}
-.book-media img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* The Creative Bookmark Button */
-.bookmark-button {
-    display: inline-block;
-    position: relative;
-    background: #c0392b; /* A nice red color */
-    color: white;
-    padding: 15px 25px;
-    margin-top: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px 5px 0 0;
-    transition: all 0.2s ease-in-out;
-}
-
-.bookmark-button::after {
-    content: '';
-    position: absolute;
-    bottom: -20px; /* Controls the length of the V-shape */
-    left: 0;
-    width: 0;
-    height: 0;
-    border-top: 20px solid #c0392b;
-    border-left: 27px solid transparent; /* Half of the button's width */
-    border-right: 27px solid transparent; /* Half of the button's width */
-    transform: translateX(calc(50% - 27px));
-}
-
-.bookmark-button:hover {
-    background: #e74c3c;
-    transform: translateY(-5px);
-}
-.bookmark-button:hover::after {
-    border-top-color: #e74c3c;
-}
-
-/* Link to go back */
-.back-link-container {
-    position: absolute;
-    bottom: 20px;
-}
-.back-link {
-    color: #fdfaf7;
-    text-decoration: none;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 5px;
-}
-
-
-
-/* ===== Styling for Category Index Tabs ===== */
 .category-tabs {
     position: absolute;
-    top: 20px;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 5px;
-    z-index: 100; /* Make sure it's on top */
+    z-index: 100;
 }
-
 .tab {
     padding: 10px 20px;
     background-color: #a58e7c;
@@ -181,15 +155,11 @@ body {
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1) inset;
     transition: all 0.2s ease-in-out;
 }
-
 .tab:hover, .tab.active {
     background-color: #fdfaf7;
     color: #5d493a;
     transform: translateY(-5px);
 }
-
-
-/* ===== Styling for Category Corner Ribbon ===== */
 .ribbon-wrapper {
     width: 150px;
     height: 150px;
@@ -198,7 +168,6 @@ body {
     top: -10px;
     right: -10px;
 }
-
 .ribbon {
     font: bold 15px Sans-Serif;
     color: #FFF;
@@ -210,68 +179,82 @@ body {
     left: -5px;
     top: 45px;
     width: 200px;
-    background-color: #c0392b; /* Same red as our bookmark button */
+    background-color: #c0392b;
     box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 }
 
 /* ======================================= */
-/* ===== Styling for Login/Sign-up Forms ===== */
+/* ===== Detail Page & Buttons ===== */
 /* ======================================= */
+.detail-page {
+    width: 80vw;
+    max-width: 900px;
+    min-height: 60vh;
+    margin: 120px auto 40px auto;
+    background-color: #fdfaf7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    display: flex;
+    padding: 40px;
+    gap: 30px;
+    border-radius: 3px;
+    color: #333;
+}
+.book-info { flex: 1; }
+.book-media { flex-basis: 300px; text-align: center; }
+.book-media img { width: 100%; max-height: 400px; object-fit: cover; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.download-button { display: block; background-color: #007bff; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; margin-top: 1em; }
+.back-link-container { text-align: center; padding-bottom: 20px; }
+.back-link { color: #fdfaf7; text-decoration: none; padding: 10px; background-color: rgba(0,0,0,0.3); border-radius: 5px; }
 
+/* ======================================= */
+/* ===== Auth & Ledger Forms ===== */
+/* ======================================= */
+/* This applies to regular login/signup and is also used by logout_feedback */
 .form-container {
     width: 100%;
     max-width: 500px;
-    margin: 50px auto;
+    margin: 100px auto;
     padding: 40px;
-    background-color: #fdfaf7; /* Use the same 'old paper' color */
+    background-color: #fdfaf7;
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     border: 1px solid #dcd3c9;
 }
-
 .form-container h2 {
     text-align: center;
     margin-bottom: 1.5em;
     color: #333;
     font-family: 'Georgia', serif;
 }
-
-/* Styles for the <p> tags that Django's form.as_p generates */
 .form-container p {
     margin-bottom: 1.2em;
     display: flex;
-    flex-direction: column; /* Stack label on top of input */
-    gap: 0.5em; /* Space between label and input */
+    flex-direction: column;
+    gap: 0.5em;
 }
-
 .form-container label {
     font-weight: bold;
     color: #555;
 }
-
-.form-container input,
-.form-container ul.errorlist { /* Style error messages too */
+.form-container input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    box-sizing: border-box; /* Important for padding */
-    font-size: 1em;
+    box-sizing: border-box;
 }
-
 .form-container ul.errorlist {
     list-style-type: none;
     padding: 10px;
     margin: 0 0 1em 0;
-    color: #c0392b; /* Red for errors */
+    color: #c0392b;
     background-color: #fbeae5;
     border: 1px solid #c0392b;
 }
-
 .form-button {
     width: 100%;
     padding: 12px;
-    background-color: #4a1c12; /* Dark leather color */
+    background-color: #4a1c12;
     color: white;
     border: none;
     border-radius: 3px;
@@ -281,131 +264,34 @@ body {
     margin-top: 1em;
     transition: background-color 0.2s ease-in-out;
 }
-
 .form-button:hover {
     background-color: #6d3325;
 }
 
-/* ======================================= */
-/* ===== Styling for Main Navigation Bar ===== */
-/* ======================================= */
 
-.main-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    box-sizing: border-box;
-    z-index: 1000; /* Ensure it's on top of everything */
-    background-color: rgba(0, 0, 0, 0.2); /* A semi-transparent dark background */
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-brand {
-    font-family: 'Georgia', serif;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-}
-
-.nav-link {
-    color: #f0e6e6;
-    text-decoration: none;
-    font-family: sans-serif;
-    font-size: 1em;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-}
-
-.nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.nav-welcome {
-    color: #fff;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-/* A special style for the login button to make it stand out */
-.auth-button {
-    background-color: #fdfaf7;
-    color: #4a1c12;
-    font-weight: bold;
-}
-.auth-button:hover {
-    background-color: #e0d8cd;
-}
-
-/* Styling for the Favorite button */
-.favorite-button {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #4a1c12;
-    border-radius: 3px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-.favorite-button.add {
-    background-color: transparent;
-    color: #4a1c12;
-}
-.favorite-button.add:hover {
-    background-color: #4a1c12;
-    color: white;
-}
-.favorite-button.remove {
-    background-color: #c0392b;
-    border-color: #c0392b;
-    color: white;
-}
-.favorite-button.remove:hover {
-    background-color: #e74c3c;
-    border-color: #e74c3c;
-}
-/* ======================================= */
-/* === Styling for Library Ledger Sign-Up === */
-/* ======================================= */
-
-/* The main container to center the ledger */
+/* Specific styles for the LEDGER forms (Sign-up, Logout feedback) */
 .ledger-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-top: 100px; /* Space below the main nav bar */
+    padding-top: 100px;
 }
 
-/* The open book effect */
 .ledger-book {
     display: flex;
-    width: 1000px; /* Width of the open book */
+    width: 1000px;
     height: 700px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Styling for each page of the ledger */
 .ledger-page {
     width: 50%;
     height: 100%;
     background-color: #fdfaf7;
     padding: 40px;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace; /* A typewriter/official font */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .left-page {
@@ -446,12 +332,11 @@ body {
 }
 
 .librarian-name {
-    font-family: 'Brush Script MT', 'cursive'; /* A fancy signature font */
+    font-family: 'Brush Script MT', 'cursive';
     font-size: 2em;
-    color: #003366; /* A nice ink blue */
+    color: #003366;
 }
 
-/* Styling for the form on the right page */
 .form-container-ledger {
     text-align: center;
 }
@@ -470,10 +355,10 @@ body {
     text-transform: uppercase;
 }
 
-/* This is the key to the "fill in the blank" look */
 .form-field input[type="text"],
 .form-field input[type="email"],
-.form-field input[type="password"] {
+.form-field input[type="password"],
+.form-field textarea { /* Added textarea for feedback form */
     background: transparent;
     border: none;
     border-bottom: 2px solid #bba;
@@ -481,11 +366,12 @@ body {
     padding: 8px 5px;
     font-size: 1.2em;
     font-family: 'Georgia', serif;
-    outline: none; /* Removes the blue glow on click */
+    outline: none;
     transition: border-color 0.2s;
 }
-.form-field input:focus {
-    border-bottom-color: #003366; /* Ink blue when typing */
+.form-field input:focus,
+.form-field textarea:focus {
+    border-bottom-color: #003366;
 }
 
 .form-field .errorlist {
@@ -504,22 +390,21 @@ body {
     margin-bottom: 20px;
 }
 
-/* The registration stamp button */
 .stamp-container {
     margin-top: 40px;
     display: flex;
-    justify-content: flex-end; /* Puts the stamp in the bottom right */
+    justify-content: flex-end;
 }
 
 .stamp-button {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Makes it a circle */
-    border: 5px double #c0392b; /* A classic red stamp border */
+    border-radius: 50%;
+    border: 5px double #c0392b;
     background-color: transparent;
     cursor: pointer;
     position: relative;
-    transform: rotate(-15deg); /* A jaunty angle, like a real stamp */
+    transform: rotate(-15deg);
     transition: all 0.1s ease-in;
 }
 .stamp-button:hover {
@@ -527,6 +412,11 @@ body {
 }
 .stamp-button:active {
     transform: rotate(-15deg) scale(0.95);
+}
+.stamp-button:disabled { /* Style for disabled button */
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #999;
 }
 
 .stamp-text {
@@ -536,4 +426,135 @@ body {
     border: 2px solid #c0392b;
     padding: 10px;
     display: inline-block;
+}
+
+/* ======================================= */
+/* ===== Book Action Buttons ===== */
+/* ======================================= */
+.book-actions {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+.action-button {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #4a1c12;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+    color: #4a1c12;
+    text-align: left;
+}
+.action-button:hover {
+    background-color: #f0e6d8;
+}
+.action-button.active {
+    background-color: #4a1c12;
+    color: white;
+}
+.action-button.active:hover {
+    background-color: #6d3325;
+}
+.action-button i {
+    margin-right: 0.8em;
+    width: 20px;
+}
+
+/* ======================================= */
+/* ===== Profile Page Journal Style ===== */
+/* ======================================= */
+.journal-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 20px 40px 20px;
+}
+.journal-page {
+    width: 100%;
+    max-width: 800px;
+    min-height: 80vh;
+    background-color: #fdfaf7;
+    background-image:
+        linear-gradient(rgba(200, 180, 160, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 180, 160, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid #dcd3c9;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    padding: 40px 60px;
+    color: #333;
+    border-radius: 2px;
+}
+.journal-header {
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+}
+.journal-header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5em;
+    margin: 0;
+    color: #444;
+}
+.journal-date {
+    font-family: 'Courier New', Courier, monospace;
+    color: #777;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+.journal-section {
+    margin-bottom: 40px;
+}
+.journal-section h2 {
+    font-family: 'Brush Script MT', 'cursive';
+    font-size: 2.8em;
+    color: #003366;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    font-weight: normal;
+}
+.journal-list {
+    list-style-type: none;
+    padding-left: 20px;
+    font-family: 'Georgia', serif;
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+.journal-list li {
+    padding-left: 15px;
+    border-left: 2px solid #c8a46e;
+    margin-bottom: 10px;
+    color: #555;
+}
+.journal-list li em {
+    color: #777;
+}
+.journal-list li.empty-entry {
+    font-style: italic;
+    color: #888;
+    border-left: none;
+}
+.favorites-list li {
+    font-weight: bold;
+}
+.completed-item {
+    position: relative;
+}
+.strikethrough {
+    text-decoration: line-through;
+    text-decoration-color: #c0392b;
+    text-decoration-thickness: 2px;
+    color: #999;
+}
+.completed-check {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 10px;
 }

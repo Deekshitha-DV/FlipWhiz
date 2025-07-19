@@ -2,7 +2,8 @@
 """Database models for the books application."""
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings # Use settings for AUTH_USER_MODEL
+from django.contrib.auth.models import User # Kept for compatibility if needed elsewhere
 
 
 class Category(models.Model):
@@ -13,7 +14,6 @@ class Category(models.Model):
 
     class Meta:
         """Meta options for the Category model."""
-
         verbose_name_plural = "Categories"
 
     def __str__(self):
@@ -39,19 +39,26 @@ class Book(models.Model):
         return self.title
 
 
-class Favorite(models.Model):
-    """Links a User to a Book they have favorited."""
+class UserBookStatus(models.Model):
+    """Links a User to a Book and stores their interaction status."""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Define the possible statuses using a ChoiceField
+    STATUS_CHOICES = [
+        ('FAVORITE', 'Favorite'),
+        ('READ_NEXT', 'Reading List'),
+        ('COMPLETED', 'Completed'),
+    ]
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    added_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """Meta options for the Favorite model."""
-
-        # This constraint ensures a user can't favorite the same book more than once
-        unique_together = ("user", "book")
+        """Meta options for the UserBookStatus model."""
+        # A user can only have one status per book
+        unique_together = ('user', 'book')
 
     def __str__(self):
-        """Return the string representation of the Favorite relationship."""
-        return f"{self.user.username}'s favorite: {self.book.title}"
+        """Return the string representation of the status."""
+        return f"{self.user.username} - {self.book.title}: {self.get_status_display()}"

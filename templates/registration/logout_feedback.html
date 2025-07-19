@@ -1,25 +1,34 @@
+<!-- This is the complete, correct, and final content for templates/registration/logout_feedback.html -->
+
 {% extends 'books/base.html' %}
 
 {% block title %}Farewell{% endblock %}
 
 {% block content %}
 <div class="ledger-container">
+    <!-- We use the 'ledger-book' class to make it look like our sign-up page -->
     <div class="ledger-book" style="width: 600px;"> <!-- Make it a single page book -->
         <div class="ledger-page right-page">
             <div class="ledger-header">
                 <h2>Before you go...</h2>
                 <p class="subheader">Your feedback is invaluable to our library.</p>
             </div>
+
             <form method="post" id="feedback-form">
                 {% csrf_token %}
+                
+                <!-- We use the 'form-field' class for consistent styling -->
                 <div class="form-field">
                     <label for="{{ form.enjoyed.id_for_label }}">What did you enjoy most?</label>
                     {{ form.enjoyed }}
                 </div>
+                
                 <div class="form-field">
                     <label for="{{ form.improvements.id_for_label }}">What could be improved?</label>
                     {{ form.improvements }}
                 </div>
+                
+                <!-- We use the 'stamp-container' and 'stamp-button' classes -->
                 <div class="stamp-container">
                     <button type="submit" id="final-logout-button" class="stamp-button" disabled>
                         <span class="stamp-text">LOGOUT</span>

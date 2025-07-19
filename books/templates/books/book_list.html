@@ -1,18 +1,12 @@
 <!-- This is the complete and correct final content for books/templates/books/book_list.html -->
-
 {% extends 'books/base.html' %}
 {% load static %}
 
 {% block title %}
-    {% if is_favorites_page %}
-        My Favorites
-    {% else %}
-        FlipWhiz Library
-    {% endif %}
+    {% if is_favorites_page %}My Favorites{% else %}FlipWhiz Library{% endif %}
 {% endblock %}
 
 {% block content %}
-    <!-- Conditionally display category tabs ONLY on the main library/category pages -->
     {% if not is_favorites_page %}
         <div class="category-tabs">
             <a href="{% url 'book_list' %}" class="tab {% if not current_category %}active{% endif %}">All</a>
@@ -23,16 +17,11 @@
             {% endfor %}
         </div>
     {% endif %}
+    <script id="book-data" type="application/json">{{ books_json|safe }}</script>
+    <script id="session-data" type="application/json">{{ session_data|safe }}</script>
 
-    <!-- This script tag holds the data from our Django view -->
-    <script id="book-data" type="application/json">
-        {{ books_json|safe }}
-    </script>
-
-    <!-- The Flipbook Container - JavaScript will build the book inside here -->
     <div class="flipbook-container">
         <div class="flipbook">
-            <!-- The Book Cover -->
              <div class="page cover">
                 {% if is_favorites_page %}
                     <h1>My Favorites</h1>
@@ -42,12 +31,10 @@
                     <p>Your Personal E-Book Library</p>
                 {% endif %}
             </div>
-            <!-- The rest of the pages will be added by main.js -->
         </div>
     </div>
 {% endblock %}
 
 {% block scripts %}
-    <!-- Load the turn.js library -->
     <script type="text/javascript" src="{% static 'books/js/turn.min.js' %}"></script>
 {% endblock %}
